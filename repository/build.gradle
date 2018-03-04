@@ -1,6 +1,8 @@
 version = '0.0.1-SNAPSHOT'
 
 dependencies {
+	compile project(':model')
+
 	compile('org.springframework.boot:spring-boot-starter-data-mongodb-reactive')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }

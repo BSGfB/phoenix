@@ -10,6 +10,7 @@ public class DozerConfiguration {
 
     @Bean
     public Mapper dozerBeanMapper() {
-        return DozerBeanMapperBuilder.buildDefault();
+        return DozerBeanMapperBuilder.create()
+                .withMappingFiles("dozer/dozerBeanMapping.xml").build();
     }
 }

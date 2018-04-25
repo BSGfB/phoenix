@@ -79,3 +79,50 @@ VALUES
   ('Smartphone', (SELECT common_category_id
                  FROM common_category
                  WHERE name = 'Electronic devices'));
+
+
+
+DROP TABLE IF EXISTS city;
+DROP TABLE IF EXISTS region;
+DROP FUNCTION IF EXISTS getRegionIdByName;
+
+CREATE FUNCTION getRegionIdByName(name VARCHAR(200))
+  RETURNS INT DETERMINISTIC
+  BEGIN
+    DECLARE id INT;
+    SELECT region_id
+    INTO id
+    FROM region r
+    WHERE r.name = name;
+    RETURN id;
+  END;
+
+CREATE TABLE region (
+  region_id INT          NOT NULL AUTO_INCREMENT,
+  name      VARCHAR(200) NOT NULL UNIQUE,
+
+  PRIMARY KEY (region_id)
+);
+
+CREATE TABLE city (
+  city_id   INT          NOT NULL AUTO_INCREMENT,
+  name      VARCHAR(200) NOT NULL UNIQUE,
+  region_id INT          NOT NULL,
+
+  PRIMARY KEY (city_id),
+  FOREIGN KEY (region_id) REFERENCES region (region_id)
+);
+
+INSERT INTO region (name)
+VALUES ('Brest Region'), ('Gomel Region'), ('Grodno Region'), ('Mogilev Region'), ('Vitebsk Region'), ('Minsk Region');
+
+INSERT INTO city (name, region_id)
+VALUES
+  ('Brest', getRegionIdByName('Brest Region')),
+  ('Baranovichi', getRegionIdByName('Brest Region')),
+  ('Pinsk', getRegionIdByName('Brest Region')),
+  ('Kobryn', getRegionIdByName('Brest Region')),
+  ('Biaroza', getRegionIdByName('Brest Region')),
+  ('Stolin', getRegionIdByName('Brest Region')),
+  ('Gomel', getRegionIdByName('Gomel Region')),
+  ('Mazyr', getRegionIdByName('Gomel Region'));

@@ -4,9 +4,10 @@ apply plugin: "groovy"
 
 dependencies {
     compile project(':repository')
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: springBootVersion
+    compile group: 'com.github.dozermapper', name: 'dozer-core', version: dozerVersion
 
     testCompile "org.codehaus.groovy:groovy-all:2.4.13"
-    testCompile('org.springframework.boot:spring-boot-starter-test')
     testCompile group: 'org.spockframework', name: 'spock-core', version: '1.1-groovy-2.4'
     testCompile group: 'org.spockframework', name: 'spock-spring', version: '1.1-groovy-2.4'
 

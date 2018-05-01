@@ -7,22 +7,23 @@ import javax.persistence.*;
 public class PhoneEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "phone_id")
-    private Long id;
+    private Long phoneId;
 
     @Column(name = "phone_number")
     private String phoneNumber;
 
-    @Column(name = "user_id")
-    private Long userId;
+    @ManyToOne
+    @JoinColumn(name="user_id")
+    private UserEntity user;
 
-    public Long getId() {
-        return id;
+    public Long getPhoneId() {
+        return phoneId;
     }
 
-    public void setId(final Long id) {
-        this.id = id;
+    public void setPhoneId(final Long phoneId) {
+        this.phoneId = phoneId;
     }
 
     public String getPhoneNumber() {
@@ -33,11 +34,11 @@ public class PhoneEntity {
         this.phoneNumber = phoneNumber;
     }
 
-    public Long getUserId() {
-        return userId;
+    public UserEntity getUser() {
+        return user;
     }
 
-    public void setUserId(final Long userId) {
-        this.userId = userId;
+    public void setUser(final UserEntity user) {
+        this.user = user;
     }
 }

@@ -7,8 +7,9 @@ dependencies {
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: springBootVersion
     compile group: 'com.github.dozermapper', name: 'dozer-core', version: dozerVersion
 
-    testCompile "org.codehaus.groovy:groovy-all:2.4.13"
-    testCompile group: 'org.spockframework', name: 'spock-core', version: '1.1-groovy-2.4'
-    testCompile group: 'org.spockframework', name: 'spock-spring', version: '1.1-groovy-2.4'
-
+    testCompile "org.codehaus.groovy:groovy-all:$groovyVersion"
+    testCompile group: 'org.spockframework', name: 'spock-core', version: spockVersion
+    testCompile group: 'org.spockframework', name: 'spock-spring', version: spockVersion
+    testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: springBootVersion
+    testCompile group: 'mysql', name: 'mysql-connector-java', version: mySqlConnectorVersion
 }

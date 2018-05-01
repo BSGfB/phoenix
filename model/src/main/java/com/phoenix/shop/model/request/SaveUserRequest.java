@@ -1,17 +1,16 @@
-package com.phoenix.shop.model.response;
+package com.phoenix.shop.model.request;
 
 import com.phoenix.shop.model.plane.Gender;
-import com.phoenix.shop.model.plane.Phone;
 import lombok.Data;
 
 import java.time.LocalDate;
 import java.util.List;
 
 @Data
-public class UserResponse {
-    private Long userId;
-
+public class SaveUserRequest {
     private String email;
+
+    private String password;
 
     private String firstName;
 
@@ -23,5 +22,7 @@ public class UserResponse {
 
     private Gender gender;
 
-    private List<Phone> phones;
+    private Long cityId;
+
+    private List<String> phones;
 }

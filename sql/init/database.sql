@@ -109,72 +109,72 @@ DELIMITER $$
 CREATE FUNCTION getRegionIdByName(region_name VARCHAR(200))
   RETURNS INT DETERMINISTIC
   BEGIN
-    DECLARE id INT;
+    DECLARE phoneId INT;
     SELECT region_id
-    INTO id
+    INTO phoneId
     FROM region as r
     WHERE r.name = region_name;
-    RETURN id;
+    RETURN phoneId;
   END
 $$
 
 CREATE FUNCTION getRoleIdByName(role_name VARCHAR(200))
   RETURNS INT DETERMINISTIC
   BEGIN
-    DECLARE id INT;
+    DECLARE phoneId INT;
     SELECT r.role_id
-    INTO id
+    INTO phoneId
     FROM role as r
     WHERE r.role_name = role_name;
-    RETURN id;
+    RETURN phoneId;
   END
 $$
 
 CREATE FUNCTION getUserIdByEmail(email VARCHAR(200))
   RETURNS INT DETERMINISTIC
   BEGIN
-    DECLARE id INT;
+    DECLARE phoneId INT;
     SELECT u.user_id
-    INTO id
+    INTO phoneId
     FROM user as u
     WHERE u.email = email;
-    RETURN id;
+    RETURN phoneId;
   END
 $$
 
 CREATE FUNCTION getCommonCategoryIdByName(category_name VARCHAR(200))
   RETURNS INT DETERMINISTIC
   BEGIN
-    DECLARE id INT;
+    DECLARE phoneId INT;
     SELECT common_category_id
-    INTO id
+    INTO phoneId
     FROM common_category
     WHERE name = category_name;
-    RETURN id;
+    RETURN phoneId;
   END
 $$
 
 CREATE FUNCTION getCityIdByName(city_name VARCHAR(200))
   RETURNS INT DETERMINISTIC
   BEGIN
-    DECLARE id INT;
+    DECLARE phoneId INT;
     SELECT city_id
-    INTO id
+    INTO phoneId
     FROM city
     WHERE name = city_name;
-    RETURN id;
+    RETURN phoneId;
   END
 $$
 
 CREATE FUNCTION getCategoryIdByName(name VARCHAR(200))
   RETURNS INT DETERMINISTIC
   BEGIN
-    DECLARE id INT;
+    DECLARE phoneId INT;
     SELECT c.category_id
-    INTO id
+    INTO phoneId
     FROM category as c
     WHERE c.name = name;
-    RETURN id;
+    RETURN phoneId;
   END
 $$
 DELIMITER ;
@@ -201,12 +201,12 @@ VALUES
   ('Mazyr', getRegionIdByName('Gomel Region'));
 
 
-INSERT INTO user (first_name, last_name, email, birthday, password, photo, city_id)
+INSERT INTO user (first_name, last_name, email, birthday, password, photo, city_id, gender)
 VALUES
   ('Siarhei', 'Blashuk', 'bloshuk74@gmail.com', '1996-7-18',
    '$2a$10$/CtHaeqRzguwG72Ssz.eNuyiRZQiOuHoRYiNa.RcyVq92EBYfzcmS',
    'https://avatars0.githubusercontent.com/u/22153744?s=400&u=4b7d4a59f0c4b230433682fc6544ecdf02ce88b3&v=4',
-   getCityIdByName('Brest'));
+   getCityIdByName('Brest'), 'M');
 
 INSERT INTO role (role_name) VALUES ('USER'), ('ADMIN');
 

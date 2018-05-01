@@ -58,7 +58,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .httpBasic()
                 .and()
                     .authorizeRequests()
-                    .antMatchers("/login*").anonymous()
+                    .antMatchers("/login*", "/regions", "/categories").anonymous()
                 .and()
                     .formLogin().successHandler(authenticationSuccessHandler)
                 .and()

@@ -1,7 +1,7 @@
 package com.phoenix.shop.service.security;
 
 import com.phoenix.shop.model.entity.UserEntity;
-import com.phoenix.shop.repository.security.UserPrincipalRepository;
+import com.phoenix.shop.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,10 +12,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-    private final UserPrincipalRepository userRepository;
+    private final UserRepository userRepository;
 
     @Autowired
-    public UserDetailsServiceImpl(final UserPrincipalRepository userRepository) {
+    public UserDetailsServiceImpl(final UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 

@@ -1,5 +1,7 @@
 package com.phoenix.shop.model.entity;
 
+import com.phoenix.shop.model.plane.Gender;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
@@ -8,6 +10,8 @@ import java.util.List;
 @Table(name = "user")
 public class UserEntity {
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name = "user_id")
     private Long userId;
 
     @Column(name = "email")
@@ -28,6 +32,13 @@ public class UserEntity {
     @Column(name = "photo")
     private String photo;
 
+    @Column(name = "gender")
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
+
+    @Column(name = "city_id")
+    private Long cityId;
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_roles",
@@ -35,8 +46,9 @@ public class UserEntity {
             inverseJoinColumns = {@JoinColumn(name = "role_id")})
     private List<RoleEntity> roles;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+//    @OneToMany(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "user_id", insertable = false)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
     private List<PhoneEntity> phones;
 
     public Long getUserId() {
@@ -109,5 +121,21 @@ public class UserEntity {
 
     public void setPhones(final List<PhoneEntity> phones) {
         this.phones = phones;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(final Gender gender) {
+        this.gender = gender;
+    }
+
+    public Long getCityId() {
+        return cityId;
+    }
+
+    public void setCityId(final Long cityId) {
+        this.cityId = cityId;
     }
 }

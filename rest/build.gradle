@@ -15,7 +15,8 @@ dependencies {
     compile group: 'io.springfox', name: 'springfox-swagger2', version: swaggerVersion
     compile group: 'io.springfox', name: 'springfox-swagger-ui', version: swaggerVersion
 
-    compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.11'
+    compile group: 'mysql', name: 'mysql-connector-java', version: mySqlConnectorVersion
+    compile group: 'javax.xml.bind', name: 'jaxb-api', version: javaXB
 
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }

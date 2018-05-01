@@ -8,7 +8,7 @@ buildscript {
 }
 
 plugins {
-    id 'io.franzbecker.gradle-lombok' version '1.11'
+    id 'io.franzbecker.gradle-lombok' version '1.13'
 }
 
 version '1.0-SNAPSHOT'
@@ -26,6 +26,10 @@ subprojects {
 
     repositories {
         mavenCentral()
+    }
+
+    dependencies {
+        compileOnly group: 'org.projectlombok', name: 'lombok', version: lombokVersion
     }
 }
 

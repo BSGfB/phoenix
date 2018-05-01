@@ -1,6 +1,6 @@
 package com.phoenix.shop.model.response;
 
-import com.phoenix.shop.model.entity.RoleEntity;
+import com.phoenix.shop.model.plane.Phone;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -20,5 +20,5 @@ public class UserResponse {
 
     private String photo;
 
-    private List<RoleEntity> roles;
+    private List<Phone> phones;
 }

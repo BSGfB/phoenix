@@ -29,10 +29,15 @@ public class UserEntity {
     private String photo;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "user_roles",
+    @JoinTable(
+            name = "user_roles",
             joinColumns = {@JoinColumn(name = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "role_id")})
     private List<RoleEntity> roles;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private List<PhoneEntity> phones;
 
     public Long getUserId() {
         return userId;
@@ -96,5 +101,13 @@ public class UserEntity {
 
     public void setRoles(final List<RoleEntity> roles) {
         this.roles = roles;
+    }
+
+    public List<PhoneEntity> getPhones() {
+        return phones;
+    }
+
+    public void setPhones(final List<PhoneEntity> phones) {
+        this.phones = phones;
     }
 }

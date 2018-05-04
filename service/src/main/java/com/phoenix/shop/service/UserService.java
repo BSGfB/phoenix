@@ -8,6 +8,7 @@ import com.phoenix.shop.repository.RoleRepository;
 import com.phoenix.shop.repository.UserRepository;
 import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.parameters.P;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -44,6 +45,10 @@ public class UserService {
     }
 
     public Long save(SaveUserRequest user) {
+        if (userRepository.existsByEmail(user.getEmail())) {
+            throw new IllegalArgumentException("User with given email already exists");
+        }
+
         UserEntity userEntity = mapper.map(user, UserEntity.class);
         userEntity.setRoles(Collections.singletonList(roleRepository.findByRoleName("USER")));
         userEntity.setPassword(passwordEncoder.encode(userEntity.getPassword()));

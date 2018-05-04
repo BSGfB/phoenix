@@ -23,6 +23,10 @@ import java.util.Arrays;
 @ComponentScan("com.phoenix.shop.service.security")
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
+    private static final String[] ANONYMOUS_PATHS = {
+            "/login*", "/regions", "/categories", "/users/save"
+    };
+
     private final AuthenticationSuccessHandler authenticationSuccessHandler;
 
     private final UserDetailsService userDetailsService;
@@ -58,7 +62,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .httpBasic()
                 .and()
                     .authorizeRequests()
-                    .antMatchers("/login*", "/regions", "/categories").anonymous()
+                    .antMatchers(ANONYMOUS_PATHS).anonymous()
                 .and()
                     .formLogin().successHandler(authenticationSuccessHandler)
                 .and()
@@ -77,6 +81,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200", "http://localhost"));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "OPTIONS", "DELETE"));
+        configuration.setAllowedHeaders(Arrays.asList("Accept", "Content-Type"));
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;

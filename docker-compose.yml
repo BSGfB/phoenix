@@ -1,0 +1,18 @@
+version: '3'
+services:
+  phoenix-service-api:
+    image: "bsgfb/phoenix-api"
+    ports:
+      - 8081:8081
+    depends_on:
+          - "phoenix-database"
+  phoenix-database:
+    image: "bsgfb/phoenix-database"
+    expose:
+      - 3306
+  phoenix-hosting:
+    image: "bsgfb/phoenix-hosting"
+    expose:
+      - 3306
+    ports:
+      - 5000:5000

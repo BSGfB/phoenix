@@ -20,9 +20,9 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.Arrays;
 
-@Configuration
-@ComponentScan("com.phoenix.shop.service.security")
-public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+//@Configuration
+//@ComponentScan("com.phoenix.shop.service.security")
+public class SecurityConfiguration /* extends WebSecurityConfigurerAdapter */ {
 
     private static final String[] ANONYMOUS_PATHS = {
             "/login*", "/regions", "/categories", "/users/save"
@@ -44,7 +44,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-    @Override
+//    @Override
     public void configure(WebSecurity web) {
         web
                 .ignoring()
@@ -57,7 +57,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/webjars/**");
     }
 
-    @Override
+//    @Override
     protected void configure(final HttpSecurity http) throws Exception {
         http
                 .httpBasic()
@@ -72,7 +72,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .csrf().disable();
     }
 
-    @Override
+//    @Override
     protected void configure(AuthenticationManagerBuilder auth) {
         auth.authenticationProvider(authenticationProvider());
     }
@@ -95,6 +95,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         source.registerCorsConfiguration("/**", configuration);
         return source;
     }
+
 
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {

@@ -8,9 +8,12 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.PermitAll;
+
 @RestController
 @RequestMapping("/users")
 @Api("User controller")
+@CrossOrigin
 public class UserController {
 
     private final UserService userService;
@@ -32,6 +35,7 @@ public class UserController {
         return userService.findByEmail(email);
     }
 
+    @PermitAll
     @PostMapping(path = "/save")
     @ApiOperation("Save new user")
     public Long save(@RequestBody SaveUserRequest user) {

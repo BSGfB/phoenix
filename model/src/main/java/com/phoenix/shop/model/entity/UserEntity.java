@@ -46,8 +46,6 @@ public class UserEntity {
             inverseJoinColumns = {@JoinColumn(name = "role_id")})
     private List<RoleEntity> roles;
 
-//    @OneToMany(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "user_id", insertable = false)
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
     private List<PhoneEntity> phones;
 

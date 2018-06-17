@@ -22,13 +22,19 @@ public class UserController {
 
     @GetMapping(path = "/byId")
     @ApiOperation("Find one user by id")
-    UserResponse findById(@RequestParam("id") Long id) {
+    public UserResponse findById(@RequestParam("id") final Long id) {
         return userService.findById(id);
+    }
+
+    @GetMapping(path = "/byEmail/{email}")
+    @ApiOperation("Find one user by email")
+    public UserResponse findByEmail(@PathVariable("email") final String email) {
+        return userService.findByEmail(email);
     }
 
     @PostMapping(path = "/save")
     @ApiOperation("Save new user")
-    Long save(@RequestBody SaveUserRequest user) {
+    public Long save(@RequestBody SaveUserRequest user) {
         return userService.save(user);
     }
 }

@@ -21,6 +21,8 @@ public class UserResponse {
 
     private String photo;
 
+    private Long cityId;
+
     private Gender gender;
 
     private List<Phone> phones;

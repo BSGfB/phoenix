@@ -8,12 +8,12 @@ import com.phoenix.shop.repository.RoleRepository;
 import com.phoenix.shop.repository.UserRepository;
 import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.parameters.P;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -42,6 +42,12 @@ public class UserService {
                 .findById(id)
                 .map(userEntity -> mapper.map(userEntity, UserResponse.class))
                 .orElseThrow(() -> new IllegalArgumentException("User with id [" + id + "] not found"));
+    }
+
+    public UserResponse findByEmail(final String email) {
+        return Optional.ofNullable(userRepository.findByEmail(email))
+                .map(userEntity -> mapper.map(userEntity, UserResponse.class))
+                .orElseThrow(() -> new IllegalArgumentException("User with email [" + email + "] not found"));
     }
 
     public Long save(SaveUserRequest user) {

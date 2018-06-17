@@ -22,7 +22,7 @@ full:
 	${DOCKER_RUN}
 
 stop:
-	${DOCKER} build ${CONTAINER_NAME}
+	${DOCKER} stop ${CONTAINER_NAME}
 
 push:
 	${GRADLEW_CLEAN_BUILD}

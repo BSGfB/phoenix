@@ -1,5 +1,6 @@
 package com.phoenix.shop.rest.configuration.security;
 
+import com.google.common.collect.ImmutableList;
 import com.phoenix.shop.service.security.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -79,9 +80,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200", "http://localhost"));
-        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "OPTIONS", "DELETE"));
-        configuration.setAllowedHeaders(Arrays.asList("Accept", "Content-Type"));
+//        configuration.setAllowedOrigins(Arrays.asList(
+//                "http://localhost:4200",
+//                "http://localhost",
+//                "http://localhost:80",
+//                "http://phoenix-ui:80",
+//                "http://phoenix-ui"));
+        configuration.setAllowedOrigins(ImmutableList.of("*"));
+        configuration.setAllowedMethods(ImmutableList.of("GET", "POST", "PUT", "OPTIONS", "DELETE"));
+//        configuration.setAllowedHeaders(ImmutableList.of("Accept", "Content-Type", "Cookie"));
+        configuration.setAllowedHeaders(ImmutableList.of("Authorization", "Cache-Control", "Content-Type", "Cookie", "Authorization"));
+        configuration.setAllowCredentials(true);
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
